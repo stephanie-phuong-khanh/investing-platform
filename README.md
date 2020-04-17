@@ -1,1 +1,1 @@
-# connecting starts to angel investors 👼🏿
+# connecting startups to angel investors 👼🏿
