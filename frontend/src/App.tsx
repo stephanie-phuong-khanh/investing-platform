@@ -3,13 +3,17 @@ import logo from './logo.svg';
 import './App.css';
 import MyButton from './components/button';
 
+import { 
+  BrowserRouter as Router,
+  Route,
+  Switch
+} from 'react-router-dom';
+
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <MyButton>
-          Shut the fuck up
-        </MyButton>
+        
       </header>
     </div>
   );
