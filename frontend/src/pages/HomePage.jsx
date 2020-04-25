@@ -14,7 +14,6 @@ export default class HomePage extends React.Component {
         return (
             <div className="container">
             <Router>
-            <div className="container">
               <Navigation />
                   <TransitionRoute exact path="/" 
                         component={FeedPage} 
@@ -25,7 +24,6 @@ export default class HomePage extends React.Component {
                   <TransitionRoute exact path="/dashboard" 
                         component={DashBoard} 
                         transitionName="fade"/>
-              </div>
           </Router>
           </div>
         )
