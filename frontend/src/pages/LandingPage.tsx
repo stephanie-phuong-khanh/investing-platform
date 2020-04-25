@@ -8,9 +8,15 @@ export default class LandingPage extends React.Component {
     return (
       <a>
         Landing!
-        <Link to="/login" className="link">
+        <Button
+          component={Link}
+          to="/login"
+          variant="contained"
+          color="primary"
+          disableElevation
+        >
           Login
-        </Link>
+        </Button>
       </a>
     );
   }
