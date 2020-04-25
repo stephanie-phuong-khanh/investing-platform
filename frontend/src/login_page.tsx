@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDom from 'react-dom';
 import Button from '@material-ui/core/Button'
 
-export default class MyButton extends React.Component {
+export default class LoginPage extends React.Component {
     render() {
         return (
             <a>
