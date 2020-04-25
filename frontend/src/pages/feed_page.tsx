@@ -13,8 +13,6 @@ export default class FeedPage extends React.Component {
             <a>
                 Feed!
             </a>
-
-            <
         )
     }
 }
