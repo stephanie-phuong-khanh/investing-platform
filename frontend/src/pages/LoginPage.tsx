@@ -3,10 +3,13 @@ import ReactDom from "react-dom";
 import Button from "@material-ui/core/Button";
 import { Link } from "react-router-dom";
 
+import LandingHeader from "../components/LandingHeader";
+
 export default class LoginPage extends React.Component {
   render() {
     return (
-      <a>
+      <div>
+        <LandingHeader />
         <Button
           component={Link}
           to="/home"
@@ -26,7 +29,7 @@ export default class LoginPage extends React.Component {
         >
           Sign Up
         </Button>
-      </a>
+      </div>
     );
   }
 }
