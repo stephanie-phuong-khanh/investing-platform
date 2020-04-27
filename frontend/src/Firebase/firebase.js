@@ -16,38 +16,36 @@ class Firebase {
 	constructor() {
 		app.initializeApp(config);
 
-    this.auth = app.auth();
-	this.db = app.database;
+		this.auth = app.auth();
+		this.db = app.database;
 
-    this.googleProvider = new app.auth.GoogleAuthProvider();
+		this.googleProvider = new app.auth.GoogleAuthProvider();
 	}
 
-  // *** Auth API ***
-  
-  // *** Email & Password 
+	// *** Auth API ***
+
+	// *** Email & Password
 	doCreateUserWithEmailAndPassword = (email, password) => {
 		this.auth.createUserWithEmailAndPassword(email, password);
-	}
+	};
 
-	doSignInWithEmailAndPassword(email, password) {
+	doSignInWithEmailAndPassword = (email, password) => {
 		this.auth.signInWithEmailAndPassword(email, password);
 	}
 
-	doSignOut() {
+	doSignOut = () => {
 		this.auth.signOut();
 	}
 
-	doPasswordReset(email) {
+	doPasswordReset = (email) => {
 		this.auth.sendPasswordResetEmail(email);
 	}
-	doPasswordUpdate(password) {
-    if (this.auth.currentUser != null)
-		  this.auth.currentUser.updatePassword(password);
-  }
+	doPasswordUpdate = (password) => {
+		if (this.auth.currentUser != null) this.auth.currentUser.updatePassword(password);
+	}
 
-  doSignInWithGoogle () {
-    this.auth.signInWithPopup(this.googleProvider);
-  }
-  
+	doSignInWithGoogle = () => {
+		this.auth.signInWithPopup(this.googleProvider);
+	}
 }
 export default Firebase;

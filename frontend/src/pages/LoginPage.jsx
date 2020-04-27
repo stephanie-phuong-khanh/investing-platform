@@ -4,13 +4,15 @@ import Button from "@material-ui/core/Button";
 import { Link } from "react-router-dom";
 
 import LandingHeader from "../components/LandingHeader";
+import SignupForm from "../components/SignupForm";
+import { FirebaseContext } from '../Firebase';
 
 export default class LoginPage extends React.Component {
   render() {
     return (
       <div>
         <LandingHeader />
-        <Button
+        {/* <Button
           component={Link}
           to="/home"
           variant="contained"
@@ -18,7 +20,10 @@ export default class LoginPage extends React.Component {
           disableElevation
         >
           Login
-        </Button>
+        </Button> */}
+        <FirebaseContext.Consumer>
+      {firebase => <SignupForm firebase={firebase} />}
+    </FirebaseContext.Consumer>
 
         <Button
           component={Link}

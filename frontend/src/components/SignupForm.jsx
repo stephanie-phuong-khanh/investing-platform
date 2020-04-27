@@ -12,19 +12,26 @@ const INITIAL_STATE = {
 	error: null,
 };
 
-class SignupForm extends React.Component {
+export default class SignupForm extends React.Component {
 	constructor(props) {
 		super(props);
 
 		this.state = { ...INITIAL_STATE };
+
+		this.onChange.bind(this);
+		this.onSubmit.bind(this);
 	}
 
-	onChange(event) {
+	onChange = (event) => {
 		this.setState({ [event.target.name]: event.target.value });
-	}
+		// console.log(event.target.name + " " + event.target.value);
+	};
 
-	onSubmit(event) {
+	onSubmit = (event) => {
 		const { username, email, password1 } = this.state;
+
+		console.log("email: " + email);
+		console.log("password1: " + password1);
 
 		this.props.firebase
 			.doCreateUserWithEmailAndPassword(email, password1)
@@ -35,46 +42,81 @@ class SignupForm extends React.Component {
 				this.setState({ error });
 			});
 		event.preventDefault();
-	}
+	};
 
 	render() {
-
-    const {
-      username,
-      email,
-      password1,
-      password2,
-      error,
-    } = this.state;
+		const { username, email, password1, password2, error } = this.state;
 
 		return (
 			<form onSubmit={this.onSubmit}>
-				<input name="username" value={username} onChange={this.onChange} type="text" placeholder="Full Name" />
-				<input name="email" value={email} onChange={this.onChange} type="text" placeholder="Email Address" />
-				<input
-					name="passwordOne"
-					value={password1}
-					onChange={this.onChange}
-					type="password"
-					placeholder="Password"
-				/>
+				<div>
+					<Textfield
+						name="username"
+						label="Full Name"
+						value={username}
+						onChange={this.onChange}
+						variant="outlined"
+					/>
+					<Textfield
+						required
+						name="email"
+						label="Email"
+						value={email}
+						onChange={this.onChange}
+						variant="outlined"
+					/>
+					<Textfield
+						name="password1"
+						label="Password"
+						type="password"
+						autoComplete="current-password"
+						variant="outlined"
+						onChange={this.onChange}
+						value={password1}
+					/>
 
-        <TextField
-          label="Password"
-          type="password"
-          autoComplete="current-password"
-          variant="filled"
+					<Textfield
+						name="password2"
+						label="Confirm Password"
+						type="password"
+						autoComplete="current-password"
+						variant="outlined"
+						onChange={this.onChange}
+						value={password2}
+					/>
+					<Button type="submit" onClick={this.onSubmit}>
+						Sign Up
+					</Button>
+
+					{/* <input
+          name="username"
+          value={username}
           onChange={this.onChange}
-          value = {password1}
-        /> 
-				<input
-					name="passwordTwo"
-					value={passwordTwo}
-					onChange={this.onChange}
-					type="password"
-					placeholder="Confirm Password"
-				/>
-				<Button type="submit">Sign Up</Button>
+          type="text"
+          placeholder="Full Name"
+        />
+        <input
+          name="email"
+          value={email}
+          onChange={this.onChange}
+          type="text"
+          placeholder="Email Address"
+        />
+        <input
+          name="password1"
+          value={password1}
+          onChange={this.onChange}
+          type="password"
+          placeholder="Password"
+        />
+        <input
+          name="password2"
+          value={password2}
+          onChange={this.onChange}
+          type="password"
+          placeholder="Confirm Password"
+        />   */}
+				</div>
 			</form>
 		);
 	}
