@@ -10,30 +10,18 @@ const INITIAL_STATE = {
     error: null,
   };  
 
-  type SignupFormProps = {
-      firebase : Firebase
-  }
-
-  type SignupFormState = {
-    username: string,
-    email: string,
-    password1: string,
-    password2: string,
-    error: any,
-  }
-
-class SignupForm extends React.Component<SignupFormProps, SignupFormState> {
-    constructor(props : SignupFormProps) {
+class SignupForm extends React.Component {
+    constructor(props) {
         super(props);
 
         this.state = { ...INITIAL_STATE };
     }
     
-    onChange (event : React.ChangeEvent<HTMLInputElement>) {
+    onChange (event) {
         this.setState({ [event.target.name]: event.target.value });
     };    
 
-    onSubmit (event: React.FormEvent<HTMLInputElement>) {
+    onSubmit (event) {
         const { username, email, password1 } = this.state;
 
     this.props.firebase

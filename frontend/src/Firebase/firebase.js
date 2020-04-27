@@ -13,15 +13,11 @@ const config = {
 };
 
 class Firebase {
-  private auth: firebase.auth.Auth;
-  private db : firebase.database.Database;
-  private googleProvider : app.auth.GoogleAuthProvider;
-
 	constructor() {
 		app.initializeApp(config);
 
     this.auth = app.auth();
-    this.db = app.database();
+	this.db = app.database;
 
     this.googleProvider = new app.auth.GoogleAuthProvider();
 	}
@@ -29,11 +25,11 @@ class Firebase {
   // *** Auth API ***
   
   // *** Email & Password 
-	doCreateUserWithEmailAndPassword = (email: string, password: string) => {
+	doCreateUserWithEmailAndPassword = (email, password) => {
 		this.auth.createUserWithEmailAndPassword(email, password);
 	}
 
-	doSignInWithEmailAndPassword(email: string, password: string) {
+	doSignInWithEmailAndPassword(email, password) {
 		this.auth.signInWithEmailAndPassword(email, password);
 	}
 
@@ -41,10 +37,10 @@ class Firebase {
 		this.auth.signOut();
 	}
 
-	doPasswordReset(email: string) {
+	doPasswordReset(email) {
 		this.auth.sendPasswordResetEmail(email);
 	}
-	doPasswordUpdate(password: string) {
+	doPasswordUpdate(password) {
     if (this.auth.currentUser != null)
 		  this.auth.currentUser.updatePassword(password);
   }
