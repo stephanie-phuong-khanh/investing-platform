@@ -13,17 +13,23 @@ const config = {
 };
 
 class Firebase {
-	private auth: firebase.auth.Auth;
+  private auth: firebase.auth.Auth;
+  private db : firebase.database.Database;
+  private googleProvider : app.auth.GoogleAuthProvider;
+
 	constructor() {
 		app.initializeApp(config);
 
     this.auth = app.auth();
+    this.db = app.database();
+
+    this.googleProvider = new app.auth.GoogleAuthProvider();
 	}
 
   // *** Auth API ***
   
   // *** Email & Password 
-	doCreateUserWithEmailAndPassword(email: string, password: string) {
+	doCreateUserWithEmailAndPassword = (email: string, password: string) => {
 		this.auth.createUserWithEmailAndPassword(email, password);
 	}
 
@@ -41,6 +47,10 @@ class Firebase {
 	doPasswordUpdate(password: string) {
     if (this.auth.currentUser != null)
 		  this.auth.currentUser.updatePassword(password);
+  }
+
+  doSignInWithGoogle () {
+    this.auth.signInWithPopup(this.googleProvider);
   }
   
 }
