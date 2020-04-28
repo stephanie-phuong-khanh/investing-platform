@@ -2,7 +2,10 @@ import React from 'react';
 import ReactDom from 'react-dom';
 import Button from '@material-ui/core/Button';
 import Textfield from '@material-ui/core/TextField';
-import { FirebaseContext } from '../Firebase';
+import { FirebaseContext, withFirebase } from '../../Firebase';
+
+import * as ROUTES from '../../constants/routes';
+import { compose } from 'recompose';
 
 import { Link, withRouter } from 'react-router-dom';
 
@@ -14,18 +17,7 @@ const INITIAL_STATE = {
 	error: null,
 };
 
-const SignUpPage = () => (
-	<div>
-	  <h1>SignUp</h1>
-	  <FirebaseContext.Consumer>
-		{firebase => <SignUpForm firebase={firebase} />}
-	  </FirebaseContext.Consumer>
-	</div>
-  );
-
-
-
-export default class SignUpFormBase extends React.Component {
+class SignUpFormBase extends React.Component {
 	constructor(props) {
 		super(props);
 
@@ -138,3 +130,26 @@ export default class SignUpFormBase extends React.Component {
 		);
 	}
 }
+
+const SignUpPage = () => (
+	<div>
+	  <h1>SignUp</h1>
+	  <FirebaseContext.Consumer>
+		{firebase => <SignUpForm firebase={firebase} />}
+	  </FirebaseContext.Consumer>
+	</div>
+  );
+
+  const SignUpForm = compose(
+	withRouter,
+	withFirebase,
+  )(SignUpFormBase);
+
+  const SignUpLink = () => (
+	<p>
+	  Don't have an account? <Link to={ROUTES.SIGN_UP}>Sign Up</Link>
+	</p>
+  );
+
+export default SignUpPage;
+export { SignUpForm, SignUpLink };

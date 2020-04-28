@@ -4,26 +4,28 @@ import Button from "@material-ui/core/Button";
 import { Link } from "react-router-dom";
 
 import LandingHeader from "../components/LandingHeader";
-import SignUpForm from "../components/SignUpForm";
+import { SignUpForm } from "../components/SignUp";
 import { FirebaseContext } from '../Firebase';
 
-export default class LoginPage extends React.Component {
+import * as ROUTES from '../constants/routes';
+
+export default class SignInPage extends React.Component {
   render() {
     return (
       <div>
         <LandingHeader />
-        {/* <Button
+        <Button
           component={Link}
-          to="/home"
+          to={ROUTES.HOME}
           variant="contained"
           color="primary"
           disableElevation
         >
           Login
-        </Button> */}
-    <FirebaseContext.Consumer>
-      {firebase => <SignupForm firebase={firebase} />}
-    </FirebaseContext.Consumer>
+        </Button>
+      {/* <FirebaseContext.Consumer>
+        {firebase => <SignupForm firebase={firebase} />}
+      </FirebaseContext.Consumer> */}
 
         <Button
           component={Link}

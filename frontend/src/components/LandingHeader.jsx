@@ -5,6 +5,8 @@ import { Link } from "react-router-dom";
 
 import styled from "@emotion/styled";
 
+import * as ROUTES from '../constants/routes';
+
 const LandingMenuBar = styled(AppBar)`
   background: white !important;
   height: 65px;
@@ -63,7 +65,7 @@ export default class LandingHeader extends React.Component {
         <Archangel>ARCHANGEL</Archangel>
         <StartInvesting>Start Investing</StartInvesting>
         <GetFunding>Get Funding</GetFunding>
-        <SignInLink to="/login">Sign In</SignInLink>
+        <SignInLink to={ROUTES.SIGN_IN} >Sign In</SignInLink>
       </LandingMenuBar>
     );
   }

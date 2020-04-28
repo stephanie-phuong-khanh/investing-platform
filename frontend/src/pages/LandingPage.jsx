@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import styled from "@emotion/styled";
 
 import LandingHeader from "../components/LandingHeader";
+import * as ROUTES from '../constants/routes';
 
 export default class LandingPage extends React.Component {
   render() {
@@ -15,7 +16,7 @@ export default class LandingPage extends React.Component {
         Landing!
         <Button
           component={Link}
-          to="/login"
+          to={ROUTES.SIGN_IN}
           variant="contained"
           color="primary"
           disableElevation
