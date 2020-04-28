@@ -2,7 +2,7 @@ import React from "react";
 import ReactDom from "react-dom";
 import Button from "@material-ui/core/Button";
 import TransitionRoute from "../TransitionRoutes";
-import Navigation from "../Navigation";
+import Navigation from "../components/Navigation";
 import { Router, Route, Switch, Link } from "react-router-dom";
 
 import PitchFeed from "./HomePage/PitchFeed";

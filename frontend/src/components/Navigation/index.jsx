@@ -5,9 +5,12 @@ import { Link } from "react-router-dom";
 
 import styled from "@emotion/styled";
 
-import * as ROUTES from '../constants/routes';
+import * as ROUTES from '../../constants/routes';
 
-import SignOutButton from './SignOut';
+import SignOutButton from '../SignOut';
+
+import { AuthUserContext } from '../Session';
+
 
 const LandingMenuBar = styled(AppBar)`
   background: white !important;
@@ -60,9 +63,17 @@ const SignInLink = styled(Link)`
   text-decoration: none;
 `;
 
-const Navigation = ({ authUser }) => (
-  <div>{authUser ? <NavigationAuth /> : <NavigationNonAuth />}</div>
+const Navigation = () => (
+  <div>
+    <AuthUserContext.Consumer>
+      {authUser =>
+        authUser ? <NavigationAuth /> : <NavigationNonAuth />
+      }
+    </AuthUserContext.Consumer>
+  </div>
 );
+
+
 const NavigationAuth = () => (
   <LandingMenuBar position="sticky" elevation={0}>
         <Archangel>ARCHANGEL</Archangel>
