@@ -34,13 +34,10 @@ class SignUpFormBase extends React.Component {
 
 	onSubmit = (event) => {
 		const { username, email, password1 } = this.state;
-
-		console.log('email: ' + email);
-		console.log('password1: ' + password1);
-
 		this.props.firebase
 			.doCreateUserWithEmailAndPassword(email, password1)
-			.then((authUser) => {
+			.then(() => {
+				console.log("Did this even get called?");
 				this.setState({ ...INITIAL_STATE });
 				this.props.history.push(ROUTES.HOME);
 			})
@@ -53,7 +50,7 @@ class SignUpFormBase extends React.Component {
 	render() {
 		const { username, email, password1, password2, error } = this.state;
 
-		const isInvalid = password1 !== password2 || password1 === '' || email === '' || username === '';
+		const isInvalid = password1 !== password2 || password1 === '' || password1.length < 6 ||email === '' || username === '';
 
 		return (
 			<form onSubmit={this.onSubmit}>
@@ -134,9 +131,7 @@ class SignUpFormBase extends React.Component {
 const SignUpPage = () => (
 	<div>
 	  <h1>Sign Up</h1>
-	  <FirebaseContext.Consumer>
-		{firebase => <SignUpForm firebase={firebase} />}
-	  </FirebaseContext.Consumer>
+	  <SignUpForm />
 	</div>
   );
 

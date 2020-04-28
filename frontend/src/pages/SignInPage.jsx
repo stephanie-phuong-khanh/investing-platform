@@ -13,7 +13,6 @@ export default class SignInPage extends React.Component {
   render() {
     return (
       <div>
-        {/* <Navigation /> */}
         <Button
           component={Link}
           to={ROUTES.HOME}

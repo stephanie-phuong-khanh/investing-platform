@@ -79,7 +79,6 @@ const NavigationAuth = () => (
         <Archangel>ARCHANGEL</Archangel>
         <StartInvesting>Start Investing</StartInvesting>
         <GetFunding>Get Funding</GetFunding>
-        <SignInLink to={ROUTES.SIGN_IN} >Sign In</SignInLink>
         <SignOutButton />
       </LandingMenuBar>
 );
