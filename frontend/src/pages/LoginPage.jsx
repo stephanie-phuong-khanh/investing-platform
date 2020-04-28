@@ -4,7 +4,7 @@ import Button from "@material-ui/core/Button";
 import { Link } from "react-router-dom";
 
 import LandingHeader from "../components/LandingHeader";
-import SignupForm from "../components/SignupForm";
+import SignUpForm from "../components/SignUpForm";
 import { FirebaseContext } from '../Firebase';
 
 export default class LoginPage extends React.Component {
@@ -21,7 +21,7 @@ export default class LoginPage extends React.Component {
         >
           Login
         </Button> */}
-        <FirebaseContext.Consumer>
+    <FirebaseContext.Consumer>
       {firebase => <SignupForm firebase={firebase} />}
     </FirebaseContext.Consumer>
 

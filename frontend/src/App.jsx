@@ -9,6 +9,8 @@ import HomePage from "./pages/HomePage";
 import LandingPage from "./pages/LandingPage";
 import LoginPage from "./pages/LoginPage";
 
+import * as ROUTES from "./constants";
+
 function App() {
   return (
     <div>

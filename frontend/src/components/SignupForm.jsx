@@ -1,8 +1,10 @@
 import React from 'react';
 import ReactDom from 'react-dom';
-import Firebase from '../Firebase';
 import Button from '@material-ui/core/Button';
 import Textfield from '@material-ui/core/TextField';
+import { FirebaseContext } from '../Firebase';
+
+import { Link, withRouter } from 'react-router-dom';
 
 const INITIAL_STATE = {
 	username: '',
@@ -12,7 +14,18 @@ const INITIAL_STATE = {
 	error: null,
 };
 
-export default class SignupForm extends React.Component {
+const SignUpPage = () => (
+	<div>
+	  <h1>SignUp</h1>
+	  <FirebaseContext.Consumer>
+		{firebase => <SignUpForm firebase={firebase} />}
+	  </FirebaseContext.Consumer>
+	</div>
+  );
+
+
+
+export default class SignUpFormBase extends React.Component {
 	constructor(props) {
 		super(props);
 
@@ -30,13 +43,14 @@ export default class SignupForm extends React.Component {
 	onSubmit = (event) => {
 		const { username, email, password1 } = this.state;
 
-		console.log("email: " + email);
-		console.log("password1: " + password1);
+		console.log('email: ' + email);
+		console.log('password1: ' + password1);
 
 		this.props.firebase
 			.doCreateUserWithEmailAndPassword(email, password1)
 			.then((authUser) => {
 				this.setState({ ...INITIAL_STATE });
+				this.props.history.push(ROUTES.HOME);
 			})
 			.catch((error) => {
 				this.setState({ error });
@@ -46,6 +60,8 @@ export default class SignupForm extends React.Component {
 
 	render() {
 		const { username, email, password1, password2, error } = this.state;
+
+		const isInvalid = password1 !== password2 || password1 === '' || email === '' || username === '';
 
 		return (
 			<form onSubmit={this.onSubmit}>
@@ -84,9 +100,10 @@ export default class SignupForm extends React.Component {
 						onChange={this.onChange}
 						value={password2}
 					/>
-					<Button type="submit" onClick={this.onSubmit}>
+					<Button type="submit" onClick={this.onSubmit} disabled={isInvalid}>
 						Sign Up
 					</Button>
+					{error && <p>{error.message}</p>}
 
 					{/* <input
           name="username"
