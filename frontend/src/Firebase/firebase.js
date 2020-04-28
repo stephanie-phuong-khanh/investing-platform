@@ -39,7 +39,7 @@ class Firebase {
 
 	doPasswordUpdate = (password) => {
 		if (this.auth.currentUser != null) 
-		this.auth.currentUser.updatePassword(password);
+			return this.auth.currentUser.updatePassword(password);
 	}
 
 	doSignInWithGoogle = () => 
