@@ -11,42 +11,21 @@ import SignInPage from './pages/SignInPage';
 import Navigation from './components/Navigation';
 import { withFirebase } from './Firebase';
 
-import { AuthUserContext } from './components/Session';
+import { withAuthentication } from './components/Session';
 
-class App extends React.Component {
-	constructor(props) {
-		super(props);
-		this.state = {
-			authUser: null,
-		};
-	}
-
-	componentDidMount() {
-		this.props.firebase.auth.onAuthStateChanged((authUser) => {
-			authUser ? this.setState({ authUser }) : this.setState({ authUser: null });
-		});
-	}
-
-	componentWillMount() {
-		this.listener();
-	}
-
-	render() {
+const App = () => {
 		return (
 			<div>
 				<Router>
-					<AuthUserContext.Provider value={this.state.authUser}>
 						<Navigation />
 						<Switch>
 							<Route exact path={ROUTES.LANDING} component={LandingPage} />
 							<Route path={ROUTES.SIGN_IN} component={SignInPage} />
 							<Route path={ROUTES.HOME} component={HomePage} />
 						</Switch>
-					</AuthUserContext.Provider>
 				</Router>
 			</div>
 		);
 	}
-}
 
-export default withFirebase(App);
+export default withAuthentication(App);
