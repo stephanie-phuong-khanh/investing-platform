@@ -72,6 +72,8 @@ class SignInGoogleBase extends Component {
   constructor(props) {
     super(props);
     this.state = { error: null };
+
+    this.onSubmit.bind(this);
   }
 
   onSubmit = event => {
