@@ -133,7 +133,7 @@ class SignUpFormBase extends React.Component {
 
 const SignUpPage = () => (
 	<div>
-	  <h1>SignUp</h1>
+	  <h1>Sign Up</h1>
 	  <FirebaseContext.Consumer>
 		{firebase => <SignUpForm firebase={firebase} />}
 	  </FirebaseContext.Consumer>
