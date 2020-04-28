@@ -7,6 +7,8 @@ import styled from "@emotion/styled";
 
 import * as ROUTES from '../constants/routes';
 
+import SignOutButton from './SignOut';
+
 const LandingMenuBar = styled(AppBar)`
   background: white !important;
   height: 65px;
@@ -58,15 +60,32 @@ const SignInLink = styled(Link)`
   text-decoration: none;
 `;
 
-export default class LandingHeader extends React.Component {
-  render() {
-    return (
-      <LandingMenuBar position="sticky" elevation={0}>
+const Navigation = ({ authUser }) => (
+  <div>{authUser ? <NavigationAuth /> : <NavigationNonAuth />}</div>
+);
+const NavigationAuth = () => (
+  <LandingMenuBar position="sticky" elevation={0}>
         <Archangel>ARCHANGEL</Archangel>
         <StartInvesting>Start Investing</StartInvesting>
         <GetFunding>Get Funding</GetFunding>
         <SignInLink to={ROUTES.SIGN_IN} >Sign In</SignInLink>
+        <SignOutButton />
       </LandingMenuBar>
-    );
-  }
-}
+);
+const NavigationNonAuth = () => (
+  <LandingMenuBar position="sticky" elevation={0}>
+        <Archangel>ARCHANGEL</Archangel>
+        <StartInvesting>Start Investing</StartInvesting>
+        <GetFunding>Get Funding</GetFunding>
+        <SignInLink to={ROUTES.SIGN_IN} >Sign In</SignInLink>
+  </LandingMenuBar>
+);
+export default Navigation;
+
+// export default class LandingHeader extends React.Component {
+//   render() {
+//     return (
+      
+//     );
+//   }
+// }

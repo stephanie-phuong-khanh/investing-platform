@@ -3,7 +3,7 @@ import ReactDom from "react-dom";
 import Button from "@material-ui/core/Button";
 import { Link } from "react-router-dom";
 
-import LandingHeader from "../components/LandingHeader";
+import Navigation from "../components/Navigation";
 import { SignUpForm } from "../components/SignUp";
 import { FirebaseContext } from '../Firebase';
 
@@ -13,7 +13,7 @@ export default class SignInPage extends React.Component {
   render() {
     return (
       <div>
-        <LandingHeader />
+        {/* <Navigation /> */}
         <Button
           component={Link}
           to={ROUTES.HOME}
