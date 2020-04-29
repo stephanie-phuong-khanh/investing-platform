@@ -3,8 +3,16 @@ import ReactDom from "react-dom";
 import { makeStyles, Modal, Fade, Backdrop } from "@material-ui/core";
 
 import styled from "@emotion/styled";
-import { PitchButtonContent1, PitchButtonContent2 } from "./PitchButtonContent";
-import { PitchModalContent1, PitchModalContent2 } from "./PitchModalContent";
+import {
+  PortfolioButtonContent1,
+  PortfolioButtonContent2,
+  PortfolioButtonContent3,
+} from "./PortfolioButtonContent";
+import {
+  PortfolioModalContent1,
+  PortfolioModalContent2,
+  PortfolioModalContent3,
+} from "./PortfolModalContent";
 
 const useStyles = makeStyles((theme) => ({
   modal: {
@@ -36,7 +44,8 @@ const CuratedPitches = styled("div")`
 
 const PitchButton = styled("button")`
   width: 100%;
-  height: auto;
+  height: 200px;
+  background-color: white;
   &:focus {
     outline: none;
   }
@@ -48,27 +57,18 @@ const PitchButton = styled("button")`
   }
 `;
 
-export default function PitchFeed() {
-  const classes = useStyles();
-  const [open, setOpen] = React.useState(false);
-
-  const handleOpen = () => {
-    setOpen(true);
-  };
-
-  const handleClose = () => {
-    setOpen(false);
-  };
+export default function Portfolio() {
   return (
-    <div>
-      <CuratedPitches>Curated Pitches</CuratedPitches>
-      <Pitch1 />
-      <Pitch2 />
+    <div styles={{ backgroundColor: "#F9F9F9" }}>
+      <CuratedPitches>My Companies</CuratedPitches>
+      <Portfolio1 />
+      <Portfolio2 />
+      <Portfolio3 />
     </div>
   );
 }
 
-function Pitch1() {
+function Portfolio1() {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
 
@@ -82,7 +82,7 @@ function Pitch1() {
   return (
     <div>
       <PitchButton type="button" onClick={handleOpen}>
-        <PitchButtonContent1 />
+        <PortfolioButtonContent1 />
       </PitchButton>
       <Modal
         aria-labelledby="transition-modal-title"
@@ -100,7 +100,7 @@ function Pitch1() {
           <div className={classes.paper}>
             <h2 id="transition-modal-title"></h2>
             <p id="transition-modal-description">
-              <PitchModalContent1 />
+              <PortfolioModalContent1 />
             </p>
           </div>
         </Fade>
@@ -109,7 +109,7 @@ function Pitch1() {
   );
 }
 
-function Pitch2() {
+function Portfolio2() {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
 
@@ -123,7 +123,7 @@ function Pitch2() {
   return (
     <div>
       <PitchButton type="button" onClick={handleOpen}>
-        <PitchButtonContent2 />
+        <PortfolioButtonContent2 />
       </PitchButton>
       <Modal
         aria-labelledby="transition-modal-title"
@@ -141,7 +141,48 @@ function Pitch2() {
           <div className={classes.paper}>
             <h2 id="transition-modal-title"></h2>
             <p id="transition-modal-description">
-              <PitchModalContent2 />
+              <PortfolioModalContent2 />
+            </p>
+          </div>
+        </Fade>
+      </Modal>
+    </div>
+  );
+}
+
+function Portfolio3() {
+  const classes = useStyles();
+  const [open, setOpen] = React.useState(false);
+
+  const handleOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+  return (
+    <div>
+      <PitchButton type="button" onClick={handleOpen}>
+        <PortfolioButtonContent3 />
+      </PitchButton>
+      <Modal
+        aria-labelledby="transition-modal-title"
+        aria-describedby="transition-modal-description"
+        className={classes.modal}
+        open={open}
+        onClose={handleClose}
+        closeAfterTransition
+        BackdropComponent={Backdrop}
+        BackdropProps={{
+          timeout: 500,
+        }}
+      >
+        <Fade in={open}>
+          <div className={classes.paper}>
+            <h2 id="transition-modal-title"></h2>
+            <p id="transition-modal-description">
+              <PortfolioModalContent3 />
             </p>
           </div>
         </Fade>

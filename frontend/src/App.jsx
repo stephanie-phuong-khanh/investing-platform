@@ -6,7 +6,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import * as ROUTES from "./constants/routes";
 
 import HomePage from "./components/Private/HomePage";
-import LandingPage from "./components/Private/LandingPage";
+import LandingPage from "./components/Public/LandingPage";
 import SignInPage from "./components/Public/SignIn";
 import Navigation from "./components/Public/Navigation";
 import { withFirebase } from "./Firebase";

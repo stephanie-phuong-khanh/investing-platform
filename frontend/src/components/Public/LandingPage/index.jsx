@@ -36,7 +36,6 @@ const ImAn = styled(Button)`
   font-size: 18px !important;
   width: 270px;
   height: 60px;
-  /* line-height: 40px; */
   text-decoration: none;
 `;
 

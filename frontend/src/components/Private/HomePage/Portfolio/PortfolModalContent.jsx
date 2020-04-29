@@ -118,11 +118,25 @@ const RequestInformation = styled("div")`
   line-height: 52px;
   letter-spacing: 0.05em;
   color: #000000;
-  margin-top: 180px;
+  margin-top: 70px;
   margin-bottom: 20px;
 `;
 
-class PitchModalContent1 extends React.Component {
+const Pending = styled("div")`
+  font-family: Poppins !important;
+  letter-spacing: 2px !important;
+  background: rgba(0, 0, 0, 0.7) !important;
+  color: white !important;
+  border-radius: 0 !important;
+  font-size: 15px !important;
+  width: 200px;
+  height: 100%;
+  text-decoration: none;
+  line-height: 52px;
+  text-align: center;
+`;
+
+class PortfolioModalContent1 extends React.Component {
   render() {
     return (
       <Container>
@@ -165,25 +179,81 @@ class PitchModalContent1 extends React.Component {
           <br />
           💰 Paid Ticketing (optional)
         </PitchCaption>
-        <RequestInformation>Request Information</RequestInformation>
+        <RequestInformation>
+          <br />
+          <br />
+          Requested Information
+        </RequestInformation>
         <FigureBox>
           <Figure>Pitch deck</Figure>
-          <Request>Request</Request>
+          <Request>View</Request>
         </FigureBox>
         <FigureBox>
           <Figure>Income statement & balance sheet</Figure>
-          <Request>Request</Request>
+          <Pending>Pending</Pending>
         </FigureBox>
         <FigureBox>
           <Figure>Cap table</Figure>
-          <Request>Request</Request>
+          <Pending>Pending</Pending>
         </FigureBox>
       </Container>
     );
   }
 }
 
-class PitchModalContent2 extends React.Component {
+class PortfolioModalContent2 extends React.Component {
+  render() {
+    return (
+      <Container>
+        <TopBar>
+          <TagList>
+            <Title>HelloHabit</Title>
+            <Tag>MOBILE APP</Tag>
+            <Tag>HEALTH</Tag>
+            <Tag>PRODUCTIVITY</Tag>
+            <Tag>LIFESTYLE</Tag>
+          </TagList>
+        </TopBar>
+        <ImageRoll>
+          <DemoPicture src="images/hellohabit/hellohabit1.png" />
+          <DemoPicture src="images/hellohabit/hellohabit2.png" />
+          <DemoPicture src="images/hellohabit/hellohabit3.png" />
+          <DemoPicture src="images/hellohabit/hellohabit4.png" />
+          <DemoPicture src="images/hellohabit/hellohabit5.png" />
+          <DemoPicture src="images/hellohabit/hellohabit6.png" />
+          <DemoPicture src="images/hellohabit/hellohabit7.png" />
+        </ImageRoll>
+        <PitchCaption>
+          Hello Habit helps you build habits by finding like-minded people
+          around you to track habits together. Like or kick your friends as
+          encouragement or reminder. Keep a diary of your productivity and be
+          energized to reach your goals!
+        </PitchCaption>
+        <PitchCaption>
+          This project was started with a few friends who wanted a fun way to
+          keep in touch while using spare time for self improvement. We built
+          this application for people to build connections, inspire each other,
+          and make accountability into a lifestyle.
+        </PitchCaption>
+        <RequestInformation>Requested Information</RequestInformation>
+        <FigureBox>
+          <Figure>Pitch deck</Figure>
+          <Request>View</Request>
+        </FigureBox>
+        <FigureBox>
+          <Figure>Income statement & balance sheet</Figure>
+          <Request>View</Request>
+        </FigureBox>
+        <FigureBox>
+          <Figure>Cap table</Figure>
+          <Request>View</Request>
+        </FigureBox>
+      </Container>
+    );
+  }
+}
+
+class PortfolioModalContent3 extends React.Component {
   render() {
     return (
       <Container>
@@ -234,23 +304,29 @@ class PitchModalContent2 extends React.Component {
         <RequestInformation>
           <br />
           <br />
-          Request Information
+          <br />
+          <br />
+          Requested Information
         </RequestInformation>
         <FigureBox>
           <Figure>Pitch deck</Figure>
-          <Request>Request</Request>
+          <Pending>Pending</Pending>
         </FigureBox>
         <FigureBox>
           <Figure>Income statement & balance sheet</Figure>
-          <Request>Request</Request>
+          <Pending>Pending</Pending>
         </FigureBox>
         <FigureBox>
           <Figure>Cap table</Figure>
-          <Request>Request</Request>
+          <Pending>Pending</Pending>
         </FigureBox>
       </Container>
     );
   }
 }
 
-export { PitchModalContent1, PitchModalContent2 };
+export {
+  PortfolioModalContent1,
+  PortfolioModalContent2,
+  PortfolioModalContent3,
+};
