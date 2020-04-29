@@ -4,6 +4,7 @@ import { Button, IconButton } from "@material-ui/core";
 import { compose } from "recompose";
 
 import { withFirebase } from "../../../Firebase";
+import GoogleFBLinkedIn from "../GoogleFBLinkedIn";
 
 import styled from "@emotion/styled";
 
@@ -72,16 +73,6 @@ const FindPersonalized = styled("div")`
   margin-right: auto;
 `;
 
-const IconBar = styled("div")`
-  width: 250px;
-  display: flex;
-  flex-flow: row;
-  justify-content: space-between;
-  margin-left: auto;
-  margin-right: auto;
-  margin-bottom: 20px;
-`;
-
 const OrUseEmail = styled("div")`
   font-family: Poppins;
   letter-spacing: 1px !important;
@@ -102,11 +93,7 @@ const SignInPage = () => (
   >
     <LeftPanel>
       <SignInText>Sign In</SignInText>
-      <IconBar>
-        <FacebookButton />
-        <SignInGoogle />
-        <LinkedInButton />
-      </IconBar>
+      <GoogleFBLinkedIn />
       <OrUseEmail>or use your email account:</OrUseEmail>
       <SignInForm />
     </LeftPanel>
@@ -234,68 +221,6 @@ const SignInButton = styled("button")`
   }
 `;
 
-const GoogleButton = styled(IconButton)`
-  height: 65px;
-  width: 65px;
-  border-radius: 50%;
-  border: 1px solid rgba(171, 171, 171, 0.5) !important;
-  background-image: url("images/login-google.png");
-  background-size: cover;
-`;
-
-class SignInGoogleBase extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { error: null };
-
-    this.onSubmit.bind(this);
-  }
-
-  onSubmit = (event) => {
-    this.props.firebase
-      .doSignInWithGoogle()
-      .then(() => {
-        this.setState({ error: null });
-        this.props.history.push(ROUTES.HOME);
-      })
-      .catch((error) => {
-        this.setState({ error });
-      });
-    event.preventDefault();
-  };
-
-  render() {
-    const { error } = this.state;
-    return (
-      <form onSubmit={this.onSubmit}>
-        <GoogleButton type="submit"></GoogleButton>
-        {error && <p>{error.message}</p>}
-      </form>
-    );
-  }
-}
-
-const FacebookButton = styled(IconButton)`
-  height: 65px;
-  width: 65px;
-  border-radius: 50%;
-  border: 1px solid rgba(171, 171, 171, 0.5) !important;
-  background-image: url("images/login-facebook.png");
-  background-size: cover;
-`;
-
-const LinkedInButton = styled(IconButton)`
-  height: 65px;
-  width: 65px;
-  border-radius: 50%;
-  border: 1px solid rgba(171, 171, 171, 0.5) !important;
-  background-image: url("images/login-linkedin.png");
-  background-size: cover;
-`;
-
 const SignInForm = compose(withRouter, withFirebase)(SignInFormBase);
 
-const SignInGoogle = compose(withRouter, withFirebase)(SignInGoogleBase);
-
 export default SignInPage;
-export { SignInForm, SignInGoogle };
