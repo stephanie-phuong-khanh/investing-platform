@@ -30,6 +30,7 @@ const SignInText = styled("div")`
   font-size: 50px;
   line-height: 75px;
   letter-spacing: 0.05em;
+  margin-bottom: 20px;
 `;
 
 const SignUpLink = styled(Button)`
@@ -71,6 +72,26 @@ const FindPersonalized = styled("div")`
   margin-right: auto;
 `;
 
+const IconBar = styled("div")`
+  width: 250px;
+  display: flex;
+  flex-flow: row;
+  justify-content: space-between;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 20px;
+`;
+
+const OrUseEmail = styled("div")`
+  font-family: Poppins;
+  letter-spacing: 1px !important;
+  background: white !important;
+  color: rgba(0, 0, 0, 0.5) !important;
+  height: 40px;
+  line-height: 40px;
+  margin-bottom: 30px;
+`;
+
 const SignInPage = () => (
   <div
     style={{
@@ -81,9 +102,12 @@ const SignInPage = () => (
   >
     <LeftPanel>
       <SignInText>Sign In</SignInText>
-      <FacebookButton />
-      <SignInGoogle />
-      <LinkedInButton />
+      <IconBar>
+        <FacebookButton />
+        <SignInGoogle />
+        <LinkedInButton />
+      </IconBar>
+      <OrUseEmail>or use your email account:</OrUseEmail>
       <SignInForm />
     </LeftPanel>
     <RightPanel>
@@ -135,32 +159,82 @@ class SignInFormBase extends Component {
     const { email, password, error } = this.state;
     const isInvalid = password === "" || email === "";
     return (
-      <form onSubmit={this.onSubmit}>
-        <input
+      <SignInFormBox onSubmit={this.onSubmit}>
+        <SignInFormBlank
           name="email"
           value={email}
           onChange={this.onChange}
           type="text"
           placeholder="Email Address"
         />
-        <input
+        <SignInFormBlank
           name="password"
           value={password}
           onChange={this.onChange}
           type="password"
           placeholder="Password"
         />
-        <button disabled={isInvalid} type="submit">
+        <SignInButton disabled={isInvalid} type="submit">
           Sign In
-        </button>
+        </SignInButton>
         {error && <p>{error.message}</p>}
-      </form>
+      </SignInFormBox>
     );
   }
 }
 
+const SignInFormBox = styled("form")`
+  display: flex;
+  flex-direction: column;
+  width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+  input:-webkit-autofill,
+  input:-webkit-autofill:hover,
+  input:-webkit-autofill:focus,
+  input:-webkit-autofill:active {
+    transition: background-color 5000s ease-in-out 0s;
+  }
+  textarea:focus,
+  input:focus {
+    outline: none;
+  }
+`;
+
+const SignInFormBlank = styled("input")`
+  background-color: rgba(196, 196, 196, 0.22);
+  border: none;
+  font-size: 20px;
+  padding: 12px 20px;
+  height: 50px;
+  margin-bottom: 25px;
+  &:focus,
+  &:active {
+    background-color: rgba(196, 196, 196, 0.22) !important;
+    border: none;
+  }
+`;
+
+const SignInButton = styled("button")`
+  font-family: Poppins;
+  letter-spacing: 2px;
+  background: black;
+  color: white;
+  border-radius: 0;
+  font-size: 18px;
+  font-weight: bold;
+  width: 270px;
+  height: 60px;
+  text-decoration: none;
+  margin-top: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  &:focus {
+    outline: none;
+  }
+`;
+
 const GoogleButton = styled(IconButton)`
-  display: block;
   height: 65px;
   width: 65px;
   border-radius: 50%;
@@ -202,7 +276,6 @@ class SignInGoogleBase extends Component {
 }
 
 const FacebookButton = styled(IconButton)`
-  display: block;
   height: 65px;
   width: 65px;
   border-radius: 50%;
@@ -212,7 +285,6 @@ const FacebookButton = styled(IconButton)`
 `;
 
 const LinkedInButton = styled(IconButton)`
-  display: block;
   height: 65px;
   width: 65px;
   border-radius: 50%;
