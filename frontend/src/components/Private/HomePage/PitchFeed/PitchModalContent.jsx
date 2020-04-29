@@ -118,8 +118,63 @@ const RequestInformation = styled("div")`
   line-height: 52px;
   letter-spacing: 0.05em;
   color: #000000;
-  margin-top: 180px;
+  margin-top: 120px;
   margin-bottom: 20px;
+`;
+
+const Team = styled("div")`
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 30px;
+  line-height: 52px;
+  letter-spacing: 0.05em;
+  color: #000000;
+  margin-top: 120px;
+  margin-bottom: 20px;
+  display: block;
+  text-align: right;
+  width: 100%;
+`;
+
+const RequestBox = styled("div")`
+  width: 100%;
+`;
+
+const TeamBox = styled("div")`
+  width: 500px;
+`;
+
+const TeamMember = styled("div")`
+  font-family: Poppins;
+  letter-spacing: 2px;
+  color: black;
+  border-radius: 0;
+  font-size: 15px;
+  font-weight: bold;
+  width: 100%;
+  text-decoration: none;
+  text-align: right;
+`;
+
+const TeamMemberDescription = styled("div")`
+  font-family: Poppins;
+  letter-spacing: 2px;
+  color: black;
+  border-radius: 0;
+  font-size: 15px;
+  font-weight: lighter;
+  width: 100%;
+  text-decoration: none;
+  text-align: right;
+  margin-bottom: 10px;
+`;
+
+const Divide = styled("div")`
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: "space-between";
 `;
 
 class PitchModalContent1 extends React.Component {
@@ -165,19 +220,36 @@ class PitchModalContent1 extends React.Component {
           <br />
           💰 Paid Ticketing (optional)
         </PitchCaption>
-        <RequestInformation>Request Information</RequestInformation>
-        <FigureBox>
-          <Figure>Pitch deck</Figure>
-          <Request>Request</Request>
-        </FigureBox>
-        <FigureBox>
-          <Figure>Income statement & balance sheet</Figure>
-          <Request>Request</Request>
-        </FigureBox>
-        <FigureBox>
-          <Figure>Cap table</Figure>
-          <Request>Request</Request>
-        </FigureBox>
+        <Divide>
+          <RequestBox>
+            <RequestInformation>Request Information</RequestInformation>
+            <FigureBox>
+              <Figure>Pitch deck</Figure>
+              <Request>Request</Request>
+            </FigureBox>
+            <FigureBox>
+              <Figure>Income statement & balance sheet</Figure>
+              <Request>Request</Request>
+            </FigureBox>
+            <FigureBox>
+              <Figure>Cap table</Figure>
+              <Request>Request</Request>
+            </FigureBox>
+          </RequestBox>
+          <TeamBox>
+            <Team>Team</Team>
+            <TeamMember>Danquing Liu</TeamMember>
+            <TeamMemberDescription>
+              CEO, Product Development
+            </TeamMemberDescription>
+            <TeamMember>Victor Pontis</TeamMember>
+            <TeamMemberDescription>
+              CTO, Sofware Development
+            </TeamMemberDescription>
+            <TeamMember>Alexa Smith</TeamMember>
+            <TeamMemberDescription>Head of Design</TeamMemberDescription>
+          </TeamBox>
+        </Divide>
       </Container>
     );
   }
@@ -231,23 +303,38 @@ class PitchModalContent2 extends React.Component {
           equipped with all necessary tools, such as microphone, accelerometer
           and optical heart rate sensor.
         </PitchCaption>
-        <RequestInformation>
-          <br />
-          <br />
-          Request Information
-        </RequestInformation>
-        <FigureBox>
-          <Figure>Pitch deck</Figure>
-          <Request>Request</Request>
-        </FigureBox>
-        <FigureBox>
-          <Figure>Income statement & balance sheet</Figure>
-          <Request>Request</Request>
-        </FigureBox>
-        <FigureBox>
-          <Figure>Cap table</Figure>
-          <Request>Request</Request>
-        </FigureBox>
+        <br />
+        <br />
+        <br />
+        <br />
+        <Divide>
+          <RequestBox>
+            <RequestInformation>Request Information</RequestInformation>
+            <FigureBox>
+              <Figure>Pitch deck</Figure>
+              <Request>Request</Request>
+            </FigureBox>
+            <FigureBox>
+              <Figure>Income statement & balance sheet</Figure>
+              <Request>Request</Request>
+            </FigureBox>
+            <FigureBox>
+              <Figure>Cap table</Figure>
+              <Request>Request</Request>
+            </FigureBox>
+          </RequestBox>
+          <TeamBox>
+            <Team>Team</Team>
+            <TeamMember>ALexey Baev</TeamMember>
+            <TeamMemberDescription>CEO, Engineering</TeamMemberDescription>
+            <TeamMember>Marina Panasic</TeamMember>
+            <TeamMemberDescription>UI/UIX</TeamMemberDescription>
+            <TeamMember>Andrew Sokol</TeamMember>
+            <TeamMemberDescription>
+              CMO, Business Development
+            </TeamMemberDescription>
+          </TeamBox>
+        </Divide>
       </Container>
     );
   }

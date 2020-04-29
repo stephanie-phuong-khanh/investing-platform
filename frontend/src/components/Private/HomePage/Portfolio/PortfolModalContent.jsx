@@ -136,6 +136,60 @@ const Pending = styled("div")`
   text-align: center;
 `;
 
+const Team = styled("div")`
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 30px;
+  line-height: 52px;
+  letter-spacing: 0.05em;
+  color: #000000;
+  margin-bottom: 20px;
+  display: block;
+  text-align: right;
+  width: 100%;
+`;
+
+const RequestBox = styled("div")`
+  width: 100%;
+`;
+
+const TeamBox = styled("div")`
+  width: 500px;
+`;
+
+const TeamMember = styled("div")`
+  font-family: Poppins;
+  letter-spacing: 2px;
+  color: black;
+  border-radius: 0;
+  font-size: 15px;
+  font-weight: bold;
+  width: 100%;
+  text-decoration: none;
+  text-align: right;
+`;
+
+const TeamMemberDescription = styled("div")`
+  font-family: Poppins;
+  letter-spacing: 2px;
+  color: black;
+  border-radius: 0;
+  font-size: 15px;
+  font-weight: lighter;
+  width: 100%;
+  text-decoration: none;
+  text-align: right;
+  margin-bottom: 10px;
+`;
+
+const Divide = styled("div")`
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: "space-between";
+`;
+
 class PortfolioModalContent1 extends React.Component {
   render() {
     return (
@@ -179,23 +233,44 @@ class PortfolioModalContent1 extends React.Component {
           <br />
           💰 Paid Ticketing (optional)
         </PitchCaption>
-        <RequestInformation>
-          <br />
-          <br />
-          Requested Information
-        </RequestInformation>
-        <FigureBox>
-          <Figure>Pitch deck</Figure>
-          <Request>View</Request>
-        </FigureBox>
-        <FigureBox>
-          <Figure>Income statement & balance sheet</Figure>
-          <Pending>Pending</Pending>
-        </FigureBox>
-        <FigureBox>
-          <Figure>Cap table</Figure>
-          <Pending>Pending</Pending>
-        </FigureBox>
+        <br />
+        <br />
+        <br />
+        <br />
+        <Divide>
+          <RequestBox>
+            <RequestInformation>Requested Information</RequestInformation>
+            <FigureBox>
+              <Figure>Pitch deck</Figure>
+              <Request>View</Request>
+            </FigureBox>
+            <FigureBox>
+              <Figure>Income statement & balance sheet</Figure>
+              <Pending>Pending</Pending>
+            </FigureBox>
+            <FigureBox>
+              <Figure>Cap table</Figure>
+              <Pending>Pending</Pending>
+            </FigureBox>
+          </RequestBox>
+          <TeamBox>
+            <br />
+            <br />
+            <br />
+            <br />
+            <Team>Team</Team>
+            <TeamMember>Danquing Liu</TeamMember>
+            <TeamMemberDescription>
+              CEO, Product Development
+            </TeamMemberDescription>
+            <TeamMember>Victor Pontis</TeamMember>
+            <TeamMemberDescription>
+              CTO, Sofware Development
+            </TeamMemberDescription>
+            <TeamMember>Alexa Smith</TeamMember>
+            <TeamMemberDescription>Head of Design</TeamMemberDescription>
+          </TeamBox>
+        </Divide>
       </Container>
     );
   }
@@ -228,26 +303,45 @@ class PortfolioModalContent2 extends React.Component {
           around you to track habits together. Like or kick your friends as
           encouragement or reminder. Keep a diary of your productivity and be
           energized to reach your goals!
-        </PitchCaption>
-        <PitchCaption>
+          <br />
+          <br />
           This project was started with a few friends who wanted a fun way to
           keep in touch while using spare time for self improvement. We built
           this application for people to build connections, inspire each other,
           and make accountability into a lifestyle.
         </PitchCaption>
-        <RequestInformation>Requested Information</RequestInformation>
-        <FigureBox>
-          <Figure>Pitch deck</Figure>
-          <Request>View</Request>
-        </FigureBox>
-        <FigureBox>
-          <Figure>Income statement & balance sheet</Figure>
-          <Request>View</Request>
-        </FigureBox>
-        <FigureBox>
-          <Figure>Cap table</Figure>
-          <Request>View</Request>
-        </FigureBox>
+        <Divide>
+          <RequestBox>
+            <br />
+            <br />
+            <RequestInformation>Requested Information</RequestInformation>
+            <FigureBox>
+              <Figure>Pitch deck</Figure>
+              <Request>View</Request>
+            </FigureBox>
+            <FigureBox>
+              <Figure>Income statement & balance sheet</Figure>
+              <Request>View</Request>
+            </FigureBox>
+            <FigureBox>
+              <Figure>Cap table</Figure>
+              <Request>View</Request>
+            </FigureBox>
+          </RequestBox>
+          <TeamBox>
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <Team>Team</Team>
+            <TeamMember>Alexander Lisovoy</TeamMember>
+            <TeamMemberDescription>Founder, CEO</TeamMemberDescription>
+            <TeamMember>Patricia Liu</TeamMember>
+            <TeamMemberDescription>CTO, Engineering</TeamMemberDescription>
+          </TeamBox>
+        </Divide>
       </Container>
     );
   }
@@ -301,25 +395,54 @@ class PortfolioModalContent3 extends React.Component {
           equipped with all necessary tools, such as microphone, accelerometer
           and optical heart rate sensor.
         </PitchCaption>
-        <RequestInformation>
-          <br />
-          <br />
-          <br />
-          <br />
-          Requested Information
-        </RequestInformation>
-        <FigureBox>
-          <Figure>Pitch deck</Figure>
-          <Pending>Pending</Pending>
-        </FigureBox>
-        <FigureBox>
-          <Figure>Income statement & balance sheet</Figure>
-          <Pending>Pending</Pending>
-        </FigureBox>
-        <FigureBox>
-          <Figure>Cap table</Figure>
-          <Pending>Pending</Pending>
-        </FigureBox>
+        <Divide>
+          <RequestBox>
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <RequestInformation>Requested Information</RequestInformation>
+            <FigureBox>
+              <Figure>Pitch deck</Figure>
+              <Pending>Pending</Pending>
+            </FigureBox>
+            <FigureBox>
+              <Figure>Income statement & balance sheet</Figure>
+              <Pending>Pending</Pending>
+            </FigureBox>
+            <FigureBox>
+              <Figure>Cap table</Figure>
+              <Pending>Pending</Pending>
+            </FigureBox>
+          </RequestBox>
+          <TeamBox>
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <Team>Team</Team>
+            <TeamMember>ALexey Baev</TeamMember>
+            <TeamMemberDescription>CEO, Engineering</TeamMemberDescription>
+            <TeamMember>Marina Panasic</TeamMember>
+            <TeamMemberDescription>UI/UIX</TeamMemberDescription>
+            <TeamMember>Andrew Sokol</TeamMember>
+            <TeamMemberDescription>
+              CMO, Business Development
+            </TeamMemberDescription>
+          </TeamBox>
+        </Divide>
       </Container>
     );
   }
