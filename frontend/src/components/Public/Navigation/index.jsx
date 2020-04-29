@@ -5,16 +5,13 @@ import { Link } from "react-router-dom";
 
 import styled from "@emotion/styled";
 
-import * as ROUTES from '../../constants/routes';
+import * as ROUTES from "../../../constants/routes";
 
-import SignOutButton from '../SignOut';
-
-import { AuthUserContext } from '../Session';
-
+import { AuthUserContext } from "../../Session";
 
 const LandingMenuBar = styled(AppBar)`
   background: white !important;
-  height: 65px;
+  height: 75px;
   color: black !important;
   display: flex !important;
   flex-direction: row !important;
@@ -22,7 +19,7 @@ const LandingMenuBar = styled(AppBar)`
   width: 100%;
   font-family: "poppins";
   border-bottom: 1px solid rgba(0, 0, 0, 0.5);
-  padding: 12px 40px;
+  padding: 15px 70px;
 `;
 
 const Archangel = styled("div")`
@@ -32,6 +29,7 @@ const Archangel = styled("div")`
 `;
 
 const StartInvesting = styled(Button)`
+  font-family: Poppins !important;
   letter-spacing: 1.5px !important;
   background: black !important;
   color: white !important;
@@ -39,10 +37,11 @@ const StartInvesting = styled(Button)`
   border-radius: 0 !important;
   width: 170px;
   height: 38px;
-  margin-left: 700px !important;
+  margin-left: 630px !important;
 `;
 
 const GetFunding = styled(Button)`
+  font-family: Poppins !important;
   letter-spacing: 1.5px !important;
   background: white !important;
   color: black !important;
@@ -54,10 +53,12 @@ const GetFunding = styled(Button)`
 `;
 
 const SignInLink = styled(Link)`
+  font-family: Poppins !important;
   letter-spacing: 1px !important;
   background: white !important;
   color: rgba(0, 0, 0, 0.5) !important;
   text-transform: none !important;
+  border-radius: 0 !important;
   height: 40px;
   line-height: 40px;
   text-decoration: none;
@@ -65,37 +66,13 @@ const SignInLink = styled(Link)`
 
 const Navigation = () => (
   <div>
-    <AuthUserContext.Consumer>
-      {authUser =>
-        authUser ? <NavigationAuth /> : <NavigationNonAuth />
-      }
-    </AuthUserContext.Consumer>
+    <LandingMenuBar position="fixed" elevation={0}>
+      <Archangel>ARCHANGEL</Archangel>
+      <StartInvesting>Start Investing</StartInvesting>
+      <GetFunding>Get Funding</GetFunding>
+      <SignInLink to={ROUTES.SIGN_IN}>Sign In</SignInLink>
+    </LandingMenuBar>
   </div>
 );
 
-
-const NavigationAuth = () => (
-  <LandingMenuBar position="sticky" elevation={0}>
-        <Archangel>ARCHANGEL</Archangel>
-        <StartInvesting>Start Investing</StartInvesting>
-        <GetFunding>Get Funding</GetFunding>
-        <SignOutButton />
-      </LandingMenuBar>
-);
-const NavigationNonAuth = () => (
-  <LandingMenuBar position="sticky" elevation={0}>
-        <Archangel>ARCHANGEL</Archangel>
-        <StartInvesting>Start Investing</StartInvesting>
-        <GetFunding>Get Funding</GetFunding>
-        <SignInLink to={ROUTES.SIGN_IN} >Sign In</SignInLink>
-  </LandingMenuBar>
-);
 export default Navigation;
-
-// export default class LandingHeader extends React.Component {
-//   render() {
-//     return (
-      
-//     );
-//   }
-// }
