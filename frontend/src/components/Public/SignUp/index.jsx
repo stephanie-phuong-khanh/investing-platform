@@ -98,35 +98,6 @@ class SignUpFormBase extends React.Component {
             Sign Up
           </Button>
           {error && <p>{error.message}</p>}
-
-          {/* <input
-          name="username"
-          value={username}
-          onChange={this.onChange}
-          type="text"
-          placeholder="Full Name"
-        />
-        <input
-          name="email"
-          value={email}
-          onChange={this.onChange}
-          type="text"
-          placeholder="Email Address"
-        />
-        <input
-          name="password1"
-          value={password1}
-          onChange={this.onChange}
-          type="password"
-          placeholder="Password"
-        />
-        <input
-          name="password2"
-          value={password2}
-          onChange={this.onChange}
-          type="password"
-          placeholder="Confirm Password"
-        />   */}
         </div>
       </form>
     );
@@ -142,11 +113,5 @@ const SignUpPage = () => (
 
 const SignUpForm = compose(withRouter, withFirebase)(SignUpFormBase);
 
-const SignUpLink = () => (
-  <p>
-    Don't have an account? <Link to={ROUTES.SIGN_UP}>Sign Up</Link>
-  </p>
-);
-
 export default SignUpPage;
-export { SignUpForm, SignUpLink };
+export { SignUpForm };

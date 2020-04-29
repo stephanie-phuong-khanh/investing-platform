@@ -5,7 +5,6 @@ import { Link } from "react-router-dom";
 
 import styled from "@emotion/styled";
 
-import Navigation from "../../Public/Navigation";
 import * as ROUTES from "../../../constants/routes";
 
 const TagLine = styled("div")`

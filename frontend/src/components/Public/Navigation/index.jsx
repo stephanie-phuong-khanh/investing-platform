@@ -68,7 +68,9 @@ const Navigation = () => (
   <div>
     <LandingMenuBar position="fixed" elevation={0}>
       <Archangel>ARCHANGEL</Archangel>
-      <StartInvesting>Start Investing</StartInvesting>
+      <StartInvesting component={Link} to={ROUTES.SIGN_IN}>
+        Start Investing
+      </StartInvesting>
       <GetFunding>Get Funding</GetFunding>
       <SignInLink to={ROUTES.SIGN_IN}>Sign In</SignInLink>
     </LandingMenuBar>
