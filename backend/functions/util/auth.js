@@ -1,6 +1,6 @@
 const { admin, db } = require('./admin');
 
-module.exports = (req, res, next) => {
+var FBAuth = (req, res, next) => {
   let idToken;
   if (
     req.headers.authorization &&
@@ -33,3 +33,5 @@ module.exports = (req, res, next) => {
       return res.status(403).json(err);
     });
 };
+
+module.exports = {FBAuth};

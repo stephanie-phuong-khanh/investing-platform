@@ -8,6 +8,7 @@ const cors = require('cors');
 app.use(cors());
 
 const { db } = require('./util/admin');
+const { FBAuth } = require('./util/auth');
 
 // // Create and Deploy Your First Cloud Functions
 // // https://firebase.google.com/docs/functions/write-firebase-functions
@@ -20,10 +21,11 @@ app.get("/helloWorld", (req, res) => {
     res.send("Hello from ArchAngel!");
 });
 
-app.get("/startups/:id", (req, res) => {
+app.get("/startups/:id", FBAuth, (req, res) => {
     
 });
 
+app.post("/startups/:id", )
 //base url: https://baseurl.com/api
 
 exports.api = functions.https.onRequest(app);
