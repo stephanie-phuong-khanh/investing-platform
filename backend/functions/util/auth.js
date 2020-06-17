@@ -1,5 +1,7 @@
+// Firebase Authentication middleware
 const { admin, db } = require('./admin');
 
+//FBAuth stands for Firebase authentication
 var FBAuth = (req, res, next) => {
   let idToken;
   if (
