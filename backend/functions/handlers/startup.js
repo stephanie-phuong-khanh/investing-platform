@@ -90,4 +90,95 @@ exports.commentOnStartup = (req, res) => {
     });
 }
 
+exports.bookmarkStartup = (req, res) => {
+    const likeDocument = db
+    .collection('likes')
+    .where('userHandle', '==', req.user.handle)
+    .where('startupId', '==', req.params.startupId)
+    .limit(1);
+
+  const startupDocument = db.doc(`/startups/${req.params.startupId}`);
+
+  let startupData;
+
+  startupDocument
+    .get()
+    .then((doc) => {
+      if (doc.exists) {
+        startupData = doc.data();
+        startupData.startupId = doc.id;
+        return likeDocument.get();
+      } else {
+        return res.status(404).json({ error: `Startup with ID ${doc.id} not found` });
+      }
+    })
+    .then((data) => {
+      if (data.empty) {
+        return db
+          .collection('likes')
+          .add({
+            startupId: req.params.startupId,
+            userHandle: req.user.handle
+          })
+          .then(() => {
+            startupData.likeCount++;
+            return startupDocument.update({ likeCount: startupData.likeCount });
+          })
+          .then(() => {
+            return res.json(startupData);
+          });
+      } else {
+        return res.status(400).json({ error: 'Startup already bookmarked' });
+      }
+    })
+    .catch((err) => {
+      console.error(err);
+      res.status(500).json({ error: err.code });
+    });
+}
+
+exports.unbookmarkStartup = (req, res) => {
+    const likeDocument = db
+    .collection('likes')
+    .where('userHandle', '==', req.user.handle)
+    .where('startupId', '==', req.params.startupId)
+    .limit(1);
+
+  const startupDocument = db.doc(`/startups/${req.params.startupId}`);
+
+  let startupData;
+
+  startupDocument
+    .get()
+    .then((doc) => {
+      if (doc.exists) {
+        startupData = doc.data();
+        startupData.startupId = doc.id;
+        return likeDocument.get();
+      } else {
+        return res.status(404).json({ error: 'Startup not found' });
+      }
+    })
+    .then((data) => {
+      if (data.empty) {
+        return res.status(400).json({ error: 'Startup not liked' });
+      } else {
+        return db
+          .doc(`/likes/${data.docs[0].id}`)
+          .delete()
+          .then(() => {
+            startupData.likeCount--;
+            return startupDocument.update({ likeCount: startupData.likeCount });
+          })
+          .then(() => {
+            res.json(startupData);
+          });
+      }
+    })
+    .catch((err) => {
+      console.error(err);
+      res.status(500).json({ error: err.code });
+    });
+}
+
 
