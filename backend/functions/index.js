@@ -18,16 +18,22 @@ const {
     getUserDetails,
 } = require('./handlers/user');
 
+const {
+    getAllStartups,
+    getStartup,
+    
+} = require('./handlers/startup');
+
 // Startup routes
 app.get("/startup/:startupId", getAllStartups);
 // app.post("/startup", postOneStartup); // add startup to our DB
 app.get("/startup/:startupId", getStartup);
-app.post('/startup/:startupId/pitchdeck', uploadFile);
+// app.post('/startup/:startupId/pitchdeck', uploadFile);
 
 // app.delete("/startup/:id", deleteStartup);
-app.post('/startup/:startupId/comment', FBAuth, commentOnStartup);
-app.post('/startup/:startupId/bookmark', FBAuth, bookmarkStartup); // favorite a startup
-app.post('/startup/:startupId/unbookmark', FBAuth, unbookmarkStartup); // unfavorite a startup 
+// app.post('/startup/:startupId/comment', FBAuth, commentOnStartup);
+// app.post('/startup/:startupId/bookmark', FBAuth, bookmarkStartup); // favorite a startup
+// app.post('/startup/:startupId/unbookmark', FBAuth, unbookmarkStartup); // unfavorite a startup 
 
 // Investors/users routes
 app.post('/signup', signup);
@@ -38,6 +44,6 @@ app.get('/user/:handle', getUserDetails);
 
 //base url: https://baseurl.com/api
 
-// exports.api = functions.https.onRequest(app);
-exports.api = functions.region('europe-west1').https.onRequest(app);
+exports.api = functions.https.onRequest(app);
+// exports.api = functions.region('europe-west1').https.onRequest(app);
 
