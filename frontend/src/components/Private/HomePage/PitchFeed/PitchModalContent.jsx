@@ -340,4 +340,163 @@ class PitchModalContent2 extends React.Component {
   }
 }
 
-export { PitchModalContent1, PitchModalContent2 };
+const Logo = styled("img")`
+  height: 100px;
+  width: auto;
+`;
+
+const InfoTable = styled("table")`
+  position: relative;
+  margin-top: 10px;
+  font-size: 16px;
+  font-family: Poppins;
+  & td {
+    vertical-align: text-top;
+  }
+`;
+
+const TableRow = styled("tr")``;
+
+const RowTitle = styled("td")`
+  position: relative;
+  text-align: left;
+  font-weight: bold;
+  color: #939393;
+  font-family: Poppins;
+  /* padding-right: 20px; */
+  padding-left: 20px;
+  width: 22%;
+  /* word-spacing: 0.1em; */
+  letter-spacing: -0.02em;
+`;
+
+const WebLink = styled("a")`
+  color: black;
+`;
+
+const TableText = styled("p")`
+  word-break: normal;
+`;
+
+const TableIndustries = styled("div")`
+  display: flex;
+  justify-content: flex-start;
+`;
+
+const Industry = styled("div")`
+  background-color: ${(props) => {
+    switch (props.type) {
+      case "Technology":
+        return "#B6D3FF";
+      case "Sustainability":
+        return "#D9EED1";
+      default:
+        return "#F5E5BC";
+    }
+  }};
+  border-radius: 3px;
+  margin-right: 20px;
+  padding: 2px 15px;
+`;
+
+function PitchModalContent({
+  name,
+  logo,
+  website,
+  summary,
+  location,
+  foundingDate,
+  teamSize,
+  industries,
+  fundingStage,
+  askAmt,
+  business,
+  pitch,
+  lookingFor,
+  additionalInfo,
+}) {
+  return (
+    <>
+      <Container>
+        <Logo src={logo} />
+        <Title>{name}</Title>
+        <InfoTable>
+          <tr>
+            <RowTitle>Website</RowTitle>
+            <td>
+              <WebLink href={website} target="_blank">
+                {website}
+              </WebLink>
+            </td>
+          </tr>
+          <tr>
+            <RowTitle>Summary</RowTitle>
+            <td>
+              <TableText>{summary}</TableText>
+            </td>
+          </tr>
+          <tr>
+            <RowTitle>Location</RowTitle>
+            <td>
+              <TableText>{location}</TableText>
+            </td>
+          </tr>
+          <tr>
+            <RowTitle>Founding Date</RowTitle>
+            <td>
+              <TableText>{foundingDate}</TableText>
+            </td>
+          </tr>
+          <tr>
+            <RowTitle>Team Size</RowTitle>
+            <td>
+              <TableText>{teamSize}</TableText>
+            </td>
+          </tr>
+          <tr>
+            <RowTitle>Industry</RowTitle>
+            <td>
+              <TableIndustries>
+                {industries.map((type) => (
+                  <Industry type={type}>{type}</Industry>
+                ))}
+              </TableIndustries>
+            </td>
+          </tr>
+          <tr>
+            <RowTitle>Funding Stage</RowTitle>
+            <td>
+              <TableText>{fundingStage}</TableText>
+            </td>
+          </tr>
+          <tr>
+            <RowTitle>Ask Amount</RowTitle>
+            <td>
+              <TableText>{askAmt}</TableText>
+            </td>
+          </tr>
+          <tr>
+            <RowTitle>Business</RowTitle>
+            <td>
+              <TableText>{business}</TableText>
+            </td>
+          </tr>
+          <tr>
+            <RowTitle>Looking For</RowTitle>
+            <td>
+              <TableText>{lookingFor}</TableText>
+            </td>
+          </tr>
+          <tr>
+            <RowTitle>Additional Info</RowTitle>
+            <td>
+              <TableText>{additionalInfo}</TableText>
+            </td>
+          </tr>
+        </InfoTable>
+      </Container>
+    </>
+  );
+}
+
+export { PitchModalContent1, PitchModalContent2, PitchModalContent };

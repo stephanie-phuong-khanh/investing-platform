@@ -4,7 +4,11 @@ import { makeStyles, Modal, Fade, Backdrop } from "@material-ui/core";
 
 import styled from "@emotion/styled";
 import { PitchButtonContent1, PitchButtonContent2 } from "./PitchButtonContent";
-import { PitchModalContent1, PitchModalContent2 } from "./PitchModalContent";
+import {
+  PitchModalContent1,
+  PitchModalContent2,
+  PitchModalContent,
+} from "./PitchModalContent";
 
 const useStyles = makeStyles((theme) => ({
   modal: {
@@ -68,6 +72,17 @@ export default function PitchFeed() {
   );
 }
 
+const sampleSummary =
+  "Insense is a data-driven creative platform helping brands to get mobile-first video content from a network of 35,000 video creators.";
+
+const sampleIndustries = ["Technology", "Sustainability", "Education"];
+
+const sampleBusiness =
+  "A data-driven marketplace for marketers and influential creators. Our marketplace makes it easy for marketers to create highly effective video content through a network of creators and data optimization of the ML engine. All posting, tracking, and engagement takes place within our marketplace, making it a one-stop shop for advertisers looking to boost their brand or message.";
+
+const sampleLookingFor =
+  "Investors with industry experience, guidance in talent recruitment and introduction for follow-up rounds";
+
 function Pitch1() {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
@@ -100,7 +115,21 @@ function Pitch1() {
           <div className={classes.paper}>
             <h2 id="transition-modal-title"></h2>
             <p id="transition-modal-description">
-              <PitchModalContent1 />
+              <PitchModalContent
+                logo="./images/zumurl/zumurl.gif"
+                name="Insense"
+                website="insense.pro"
+                summary={sampleSummary}
+                location="New York, United States"
+                foundingDate="August 1, 2016"
+                teamSize="11-50 people"
+                industries={sampleIndustries}
+                fundingStage="Seed"
+                askAmt="$1,070,000"
+                business={sampleBusiness}
+                lookingFor={sampleLookingFor}
+                additionalInfo="Immigrant founders"
+              />
             </p>
           </div>
         </Fade>
