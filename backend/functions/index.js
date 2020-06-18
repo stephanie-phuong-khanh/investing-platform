@@ -1,8 +1,7 @@
 const functions = require('firebase-functions');
 const admin = require('firebase-admin');
 
-const express = require('express');
-const app = express();
+const app = require('express')();
 
 const cors = require('cors');
 app.use(cors());
@@ -21,7 +20,7 @@ const {
 const {
     getAllStartups,
     getStartup,
-    
+    commentOnStartup
 } = require('./handlers/startup');
 
 // Startup routes
@@ -31,7 +30,7 @@ app.get("/startup/:startupId", getStartup);
 // app.post('/startup/:startupId/pitchdeck', uploadFile);
 
 // app.delete("/startup/:id", deleteStartup);
-// app.post('/startup/:startupId/comment', FBAuth, commentOnStartup);
+app.post('/startup/:startupId/comment', FBAuth, commentOnStartup);
 // app.post('/startup/:startupId/bookmark', FBAuth, bookmarkStartup); // favorite a startup
 // app.post('/startup/:startupId/unbookmark', FBAuth, unbookmarkStartup); // unfavorite a startup 
 
