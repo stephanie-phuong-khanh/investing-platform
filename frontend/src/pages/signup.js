@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import Link from "react-router-dom/Link";
 import PropTypes from "prop-types";
+import styled from "@emotion/styled";
 
-import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
@@ -11,10 +11,6 @@ import CircularProgress from "@material-ui/core/CircularProgress";
 
 import { connect } from "react-redux";
 import { signupUser } from "../redux/actions/userActions";
-
-const styles = (theme) => ({
-  ...theme.signin,
-});
 
 class signup extends Component {
   constructor() {
@@ -55,18 +51,14 @@ class signup extends Component {
     const { classes, loading } = this.props;
     const { errors } = this.state;
     return (
-      <Grid className={classes.form}>
-        <Grid item sm />
-        <Grid item sm>
-          <Typography variant="h2" className={classes.pageTitle}>
-            Sign up
-          </Typography>
-          <form noValidate onSubmit={this.handleSubmit}>
+      <Outer>
+        <Half>
+          <WelcomeBack>Welcome to your portfolio.</WelcomeBack>
+          <Form noValidate onSubmit={this.handleSubmit}>
             <TextField
               id="email"
               name="email"
               label="Email"
-              className={classes.textField}
               helperText={errors.email}
               error={errors.email ? true : false}
               value={this.state.email}
@@ -78,7 +70,6 @@ class signup extends Component {
               name="password"
               type="password"
               label="Password"
-              className={classes.textField}
               helperText={errors.password}
               error={errors.password ? true : false}
               value={this.state.password}
@@ -90,7 +81,6 @@ class signup extends Component {
               name="confirmPassword"
               type="password"
               label="Confirm Password"
-              className={classes.textField}
               helperText={errors.confirmPassword}
               error={errors.confirmPassword ? true : false}
               value={this.state.confirmPassword}
@@ -102,7 +92,6 @@ class signup extends Component {
               name="handle"
               type="text"
               label="Handle"
-              className={classes.textField}
               helperText={errors.handle}
               error={errors.handle ? true : false}
               value={this.state.handle}
@@ -110,32 +99,76 @@ class signup extends Component {
               fullWidth
             />
             {errors.general && (
-              <Typography variant="body2" className={classes.customError}>
-                {errors.general}
-              </Typography>
+              <Typography variant="body2">{errors.general}</Typography>
             )}
-            <Button
-              type="submit"
-              variant="contain"
-              className={classes.button}
-              disabled={loading}
-            >
+            <LoginButton type="submit" variant="contain" disabled={loading}>
               Sign up
-              {loading && (
-                <CircularProgress size={15} className={classes.progress} />
-              )}
-            </Button>
+              {loading && <CircularProgress size={15} />}
+            </LoginButton>
             <br />
-            <small>
+            <DontHave>
               Already have an account? Log in <Link to="/login">here</Link>
-            </small>
-          </form>
-        </Grid>
-        <Grid item sm />
-      </Grid>
+            </DontHave>
+          </Form>
+        </Half>
+        <RightHalf></RightHalf>
+      </Outer>
     );
   }
 }
+
+const Form = styled("form")`
+  text-align: center;
+  margin-left: 15vw;
+  margin-right: 3vw;
+`;
+
+const DontHave = styled("div")`
+  text-align: center;
+  width: 100%;
+`;
+
+const LoginButton = styled(Button)`
+  width: 100%;
+  background-color: #404040 !important;
+  color: white !important;
+  font-weight: bold !important;
+`;
+
+const WelcomeBack = styled("div")`
+  font-size: 50px !important;
+  letter-spacing: 0px !important;
+  font-weight: bold;
+  text-align: left;
+  margin-left: 15vw;
+  margin-right: 3vw;
+  line-height: 120%;
+`;
+
+const RightHalf = styled("div")`
+  background-color: #f2f1f1 !important;
+  /* height: 100% !important; */
+  width: 50%;
+  padding-top: 80px;
+`;
+
+const Half = styled("div")`
+  width: 50%;
+  padding-top: 25vh;
+  padding-bottom: 35vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+`;
+
+const Outer = styled("div")`
+  font-family: Poppins;
+  height: 100%;
+  width: 100%;
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+`;
 
 signup.propTypes = {
   classes: PropTypes.object.isRequired,
@@ -149,6 +182,4 @@ const mapStateToProps = (state) => ({
   UI: state.UI,
 });
 
-export default connect(mapStateToProps, { signupUser })(
-  withStyles(styles)(signup)
-);
+export default connect(mapStateToProps, { signupUser })(signup);

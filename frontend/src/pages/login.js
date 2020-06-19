@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import Link from "react-router-dom/Link";
 import PropTypes from "prop-types";
+import styled from "@emotion/styled";
 
-import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
@@ -11,10 +11,6 @@ import CircularProgress from "@material-ui/core/CircularProgress";
 
 import { connect } from "react-redux";
 import { loginUser } from "../redux/actions/userActions";
-
-const styles = (theme) => ({
-  ...theme.signin,
-});
 
 class login extends Component {
   constructor() {
@@ -50,18 +46,15 @@ class login extends Component {
     } = this.props;
     const { errors } = this.state;
     return (
-      <Grid className={classes.form}>
-        <Grid item sm />
-        <Grid item sm>
-          <Typography variant="h2" className={classes.pageTitle}>
-            Login
-          </Typography>
-          <form noValidate onSubmit={this.handleSubmit}>
+      <Outer>
+        <LeftHalf></LeftHalf>
+        <Half>
+          <WelcomeBack>Welcome back!</WelcomeBack>
+          <Form noValidate onSubmit={this.handleSubmit}>
             <TextField
               id="email"
               name="email"
               label="Email"
-              className={classes.textField}
               helperText={errors.email}
               error={errors.email ? true : false}
               value={this.state.email}
@@ -73,7 +66,6 @@ class login extends Component {
               name="password"
               label="Password"
               type="password"
-              className={classes.textField}
               helperText={errors.password}
               error={errors.password ? true : false}
               value={this.state.password}
@@ -85,28 +77,75 @@ class login extends Component {
                 {errors.general}
               </Typography>
             )}
-            <Button
-              type="submit"
-              variant="contain"
-              className={classes.button}
-              disabled={loading}
-            >
+            <LoginButton type="submit" variant="contain" disabled={loading}>
               Login
-              {loading && (
-                <CircularProgress size={15} className={classes.progress} />
-              )}
-            </Button>
+              {loading && <CircularProgress size={15} />}
+            </LoginButton>
             <br />
-            <small>
+            <DontHave>
               Don't have an account? Sign up <Link to="/signup">here</Link>
-            </small>
-          </form>
-        </Grid>
-        <Grid item sm />
-      </Grid>
+            </DontHave>
+          </Form>
+        </Half>
+      </Outer>
     );
   }
 }
+
+const Form = styled("form")`
+  text-align: center;
+  margin-right: 15vw;
+  margin-left: 3vw;
+`;
+
+const DontHave = styled("div")`
+  text-align: center;
+  width: 100%;
+`;
+
+const LoginButton = styled(Button)`
+  width: 100%;
+  background-color: #404040 !important;
+  color: white !important;
+  font-weight: bold !important;
+`;
+
+const WelcomeBack = styled("div")`
+  font-size: 50px !important;
+  letter-spacing: 0px !important;
+  font-weight: bold;
+  text-align: left;
+  margin-right: 15vw;
+  margin-left: 3vw;
+`;
+
+const LeftHalf = styled("div")`
+  background-color: #f2f1f1 !important;
+  /* height: 100% !important; */
+  width: 50%;
+  padding-top: 80px;
+`;
+
+const Half = styled("div")`
+  width: 50%;
+  padding-top: 80px;
+  /* padding-right: 10%; */
+  /* padding-left: 5vw; */
+  padding-top: 35vh;
+  padding-bottom: 35vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+`;
+
+const Outer = styled("div")`
+  font-family: Poppins;
+  height: 100%;
+  width: 100%;
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+`;
 
 login.propTypes = {
   classes: PropTypes.object.isRequired,
@@ -124,7 +163,4 @@ const mapActionsToProps = {
   loginUser,
 };
 
-export default connect(
-  mapStateToProps,
-  mapActionsToProps
-)(withStyles(styles)(login));
+export default connect(mapStateToProps, mapActionsToProps)(login);

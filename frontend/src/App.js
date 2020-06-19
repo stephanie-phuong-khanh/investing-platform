@@ -2,10 +2,8 @@ import React, { Component } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import axios from "axios";
 import "./App.css";
-import { ThemeProvider as MuiThemeProvider } from "@material-ui/core/styles";
-import createMuiTheme from "@material-ui/core/styles/createMuiTheme";
 import jwtDecode from "jwt-decode";
-import themeFile from "./util/theme";
+import styled from "@emotion/styled";
 
 //Redux
 import { Provider } from "react-redux";
@@ -25,8 +23,6 @@ import signup from "./pages/signup";
 axios.defaults.baseURL =
   "http://localhost:5000/archangel-bda83/us-central1/api";
 
-const theme = createMuiTheme(themeFile);
-
 const token = localStorage.FBIdToken;
 if (token) {
   const decodedToken = jwtDecode(token);
@@ -44,22 +40,26 @@ if (token) {
 class App extends Component {
   render() {
     return (
-      <MuiThemeProvider theme={theme}>
-        <Provider store={store}>
-          <Router>
-            <NavBar />
-            <div className="container">
-              <Switch>
-                <Route exact path="/" component={home} />
-                <AuthRoute path="/login" component={login} />
-                <AuthRoute path="/signup" component={signup} />
-              </Switch>
-            </div>
-          </Router>
-        </Provider>
-      </MuiThemeProvider>
+      <Provider store={store}>
+        <Router>
+          <NavBar />
+          <Contain>
+            <Switch>
+              <Route exact path="/" component={home} />
+              <AuthRoute path="/login" component={login} />
+              <AuthRoute path="/signup" component={signup} />
+            </Switch>
+          </Contain>
+        </Router>
+      </Provider>
     );
   }
 }
+
+const Contain = styled("div")`
+  font-family: Poppins;
+  padding-top: 0px;
+  height: 100vh;
+`;
 
 export default App;
