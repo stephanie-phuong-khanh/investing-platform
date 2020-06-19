@@ -235,7 +235,7 @@ exports.uploadImage = (req, res) => {
   busboy.end(req.rawBody);
 };
 
-// // Upload a profile image for user
+// //Upload profile pic for the current user 
 // exports.uploadFile = (req, res) => {
 //   // File or Blob named mountains.jpg
 // var file = ...;
