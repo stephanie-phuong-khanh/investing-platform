@@ -15,6 +15,7 @@ const {
     addUserDetails,
     getAuthenticatedUser,
     getUserDetails,
+    uploadImage,
 } = require('./handlers/user');
 
 const {
@@ -26,9 +27,9 @@ const {
 } = require('./handlers/startup');
 
 // Startup routes
-app.get("/startup/:startupId", getAllStartups);
+app.get('/startup/:startupId', getAllStartups);
 // app.post("/startup", postOneStartup); // add startup to our DB
-app.get("/startup/:startupId", getStartup);
+app.get('/startup/:startupId', getStartup);
 // app.post('/startup/:startupId/pitchdeck', uploadFile);
 
 // app.delete("/startup/:id", deleteStartup);
@@ -39,6 +40,7 @@ app.post('/startup/:startupId/unbookmark', FBAuth, unbookmarkStartup); // unfavo
 // Investors/users routes
 app.post('/signup', signup);
 app.post('/login', login);
+app.post('/user/image', FBAuth, uploadImage);
 app.post('/user', FBAuth, addUserDetails);
 app.get('/user', FBAuth, getAuthenticatedUser);
 app.get('/user/:handle', getUserDetails);

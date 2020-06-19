@@ -30,7 +30,8 @@ exports.signup = (req, res) => {
 
   if (!valid) return res.status(400).json(errors);
 
-  const noImg = "no-img.png";
+  const noImg = "no-img.png"; // default profile picture
+  const noImgToken = "a9cc0fa5-9027-4789-bba6-70625eb61796";
 
   let token, userId;
   db.doc(`/users/${newUser.handle}`)
@@ -54,8 +55,7 @@ exports.signup = (req, res) => {
         handle: newUser.handle,
         email: newUser.email,
         createdAt: new Date().toISOString(),
-        // //TODO Append token to imageUrl. Work around just add token from image in storage.
-        // imageUrl: `https://firebasestorage.googleapis.com/v0/b/${config.storageBucket}/o/${noImg}?alt=media`,
+        imageUrl: `https://firebasestorage.googleapis.com/v0/b/${config.storageBucket}/o/${noImg}?alt=media&token=${noImgToken}`,
         userId,
       };
       return db.doc(`/users/${newUser.handle}`).set(userCredentials);
@@ -164,10 +164,10 @@ exports.getAuthenticatedUser = (req, res) => {
     .then((doc) => {
       if (doc.exists) {
         userData.credentials = doc.data();
-        // return db
-        //   .collection("likes")
-        //   .where("userHandle", "==", req.user.handle)
-        //   .get();
+        return db
+          .collection("likes")
+          .where("userHandle", "==", req.user.handle)
+          .get();
       }
       return res.json(userData);
     })
@@ -198,9 +198,7 @@ exports.uploadImage = (req, res) => {
     // my.image.png => ['my', 'image', 'png']
     const imageExtension = filename.split(".")[filename.split(".").length - 1];
     // 32756238461724837.png
-    imageFileName = `${Math.round(
-      Math.random() * 1000000000000
-    ).toString()}.${imageExtension}`;
+    imageFileName = `${Date.now()}.${imageExtension}`;
     const filepath = path.join(os.tmpdir(), imageFileName);
     imageToBeUploaded = { filepath, mimetype };
     file.pipe(fs.createWriteStream(filepath));
@@ -234,58 +232,3 @@ exports.uploadImage = (req, res) => {
   });
   busboy.end(req.rawBody);
 };
-
-// //Upload profile pic for the current user 
-// exports.uploadFile = (req, res) => {
-//   // File or Blob named mountains.jpg
-// var file = ...;
-
-// let storageRef = firebase.storage().ref();
-
-// // Create the file metadata
-// var metadata = {
-//   contentType: 'image/jpeg'
-// };
-
-
-// // Upload file and metadata to the object 'images/mountains.jpg'
-// var uploadTask = storageRef.child(`files/${file.name}`).put(file, metadata);
-
-// // Listen for state changes, errors, and completion of the upload.
-// uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED, // or 'state_changed'
-//   function(snapshot) {
-//     // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
-//     var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-//     console.log('Upload is ' + progress + '% done');
-//     switch (snapshot.state) {
-//       case firebase.storage.TaskState.PAUSED: // or 'paused'
-//         console.log('Upload is paused');
-//         break;
-//       case firebase.storage.TaskState.RUNNING: // or 'running'
-//         console.log('Upload is running');
-//         break;
-//     }
-//   }, function(error) {
-
-//   // A full list of error codes is available at
-//   // https://firebase.google.com/docs/storage/web/handle-errors
-//   switch (error.code) {
-//     case 'storage/unauthorized':
-//       // User doesn't have permission to access the object
-//       break;
-
-//     case 'storage/canceled':
-//       // User canceled the upload
-//       break;
-
-//     case 'storage/unknown':
-//       // Unknown error occurred, inspect error.serverResponse
-//       break;
-//   }
-// }, function() {
-//   // Upload completed successfully, now we can get the download URL
-//   uploadTask.snapshot.ref.getDownloadURL().then(function(downloadURL) {
-//     console.log('File available at', downloadURL);
-//   });
-// });
-// }
