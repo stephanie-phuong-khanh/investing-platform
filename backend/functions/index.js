@@ -12,10 +12,12 @@ const { FBAuth } = require('./util/auth');
 const { 
     signup, 
     login, 
+    loginWithGoogle,
     addUserDetails,
     getAuthenticatedUser,
     getUserDetails,
     uploadImage,
+    uploadProfilePic,
 } = require('./handlers/user');
 
 const {
@@ -40,7 +42,9 @@ app.post('/startup/:startupId/unbookmark', FBAuth, unbookmarkStartup); // unfavo
 // Investors/users routes
 app.post('/signup', signup);
 app.post('/login', login);
-app.post('/user/image', FBAuth, uploadImage);
+app.post('/signout')
+// app.get('/loginGoogle', loginWithGoogle);
+app.post('/user/image', FBAuth, uploadProfilePic);
 app.post('/user', FBAuth, addUserDetails);
 app.get('/user', FBAuth, getAuthenticatedUser);
 app.get('/user/:handle', getUserDetails);
