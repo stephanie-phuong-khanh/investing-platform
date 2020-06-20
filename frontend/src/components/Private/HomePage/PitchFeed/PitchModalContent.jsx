@@ -348,7 +348,7 @@ const Logo = styled("img")`
 const InfoTable = styled("table")`
   position: relative;
   margin-top: 10px;
-  font-size: 16px;
+  font-size: 14px;
   font-family: Poppins;
   & td {
     vertical-align: text-top;
@@ -365,7 +365,7 @@ const RowTitle = styled("td")`
   font-family: Poppins;
   /* padding-right: 20px; */
   padding-left: 20px;
-  width: 22%;
+  width: 25%;
   /* word-spacing: 0.1em; */
   letter-spacing: -0.02em;
 `;
@@ -394,6 +394,7 @@ const Industry = styled("div")`
         return "#F5E5BC";
     }
   }};
+  font-weight: bold;
   border-radius: 3px;
   margin-right: 20px;
   padding: 2px 15px;
@@ -404,16 +405,17 @@ function PitchModalContent({
   logo,
   website,
   summary,
-  location,
-  foundingDate,
-  teamSize,
+  country,
+  city,
+  marketSize,
   industries,
   fundingStage,
-  askAmt,
-  business,
-  pitch,
-  lookingFor,
-  additionalInfo,
+  requiredFunds,
+  teamFSize,
+  teamTSize,
+  techFounder,
+  repeatFounder,
+  years,
 }) {
   return (
     <>
@@ -436,21 +438,21 @@ function PitchModalContent({
             </td>
           </tr>
           <tr>
-            <RowTitle>Location</RowTitle>
+            <RowTitle>Country</RowTitle>
             <td>
-              <TableText>{location}</TableText>
+              <TableText>{country}</TableText>
             </td>
           </tr>
           <tr>
-            <RowTitle>Founding Date</RowTitle>
+            <RowTitle>City</RowTitle>
             <td>
-              <TableText>{foundingDate}</TableText>
+              <TableText>{city}</TableText>
             </td>
           </tr>
           <tr>
-            <RowTitle>Team Size</RowTitle>
+            <RowTitle>Market Size</RowTitle>
             <td>
-              <TableText>{teamSize}</TableText>
+              <TableText>{marketSize}</TableText>
             </td>
           </tr>
           <tr>
@@ -470,27 +472,39 @@ function PitchModalContent({
             </td>
           </tr>
           <tr>
-            <RowTitle>Ask Amount</RowTitle>
+            <RowTitle>Required Funding</RowTitle>
             <td>
-              <TableText>{askAmt}</TableText>
+              <TableText>{requiredFunds}</TableText>
             </td>
           </tr>
           <tr>
-            <RowTitle>Business</RowTitle>
+            <RowTitle>Founder Team Size</RowTitle>
             <td>
-              <TableText>{business}</TableText>
+              <TableText>{teamFSize}</TableText>
             </td>
           </tr>
           <tr>
-            <RowTitle>Looking For</RowTitle>
+            <RowTitle>Total Team Size</RowTitle>
             <td>
-              <TableText>{lookingFor}</TableText>
+              <TableText>{teamTSize}</TableText>
             </td>
           </tr>
           <tr>
-            <RowTitle>Additional Info</RowTitle>
+            <RowTitle>Technical Co-Founder</RowTitle>
             <td>
-              <TableText>{additionalInfo}</TableText>
+              <TableText>{techFounder ? "Yes" : "No"}</TableText>
+            </td>
+          </tr>
+          <tr>
+            <RowTitle>Repeat Founder</RowTitle>
+            <td>
+              <TableText>{repeatFounder ? "Yes" : "No"}</TableText>
+            </td>
+          </tr>
+          <tr>
+            <RowTitle>Years since Founding</RowTitle>
+            <td>
+              <TableText>{years}</TableText>
             </td>
           </tr>
         </InfoTable>

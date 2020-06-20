@@ -120,15 +120,17 @@ function Pitch1() {
                 name="Insense"
                 website="insense.pro"
                 summary={sampleSummary}
-                location="New York, United States"
-                foundingDate="August 1, 2016"
-                teamSize="11-50 people"
+                country="United States"
+                city="New York"
+                marketSize="$50B"
                 industries={sampleIndustries}
                 fundingStage="Seed"
-                askAmt="$1,070,000"
-                business={sampleBusiness}
-                lookingFor={sampleLookingFor}
-                additionalInfo="Immigrant founders"
+                requiredFunds="$500K - $1M"
+                teamFSize={2}
+                teamTSize={50}
+                techFounder={true}
+                repeatFounder={false}
+                years="2-5 years"
               />
             </p>
           </div>
