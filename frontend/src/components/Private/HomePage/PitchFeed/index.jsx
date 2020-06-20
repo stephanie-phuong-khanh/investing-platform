@@ -131,6 +131,10 @@ function Pitch1() {
                 techFounder={true}
                 repeatFounder={false}
                 years="2-5 years"
+                video="https://www.youtube.com/embed/dQw4w9WgXcQ"
+                firstName="John"
+                lastName="Doe"
+                email="founders@insense.co"
               />
             </p>
           </div>

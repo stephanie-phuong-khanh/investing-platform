@@ -400,6 +400,14 @@ const Industry = styled("div")`
   padding: 2px 15px;
 `;
 
+const Frame = styled("td")`
+  position: relative;
+  /* padding-top: 56.25%; */
+  width: 100%;
+  height: 0;
+  padding-top: 42.19%;
+`;
+
 function PitchModalContent({
   name,
   logo,
@@ -416,6 +424,10 @@ function PitchModalContent({
   techFounder,
   repeatFounder,
   years,
+  video,
+  firstName,
+  lastName,
+  email,
 }) {
   return (
     <>
@@ -505,6 +517,42 @@ function PitchModalContent({
             <RowTitle>Years since Founding</RowTitle>
             <td>
               <TableText>{years}</TableText>
+            </td>
+          </tr>
+          <tr>
+            <RowTitle>Pitch Video</RowTitle>
+            {/* <td> */}
+            <Frame>
+              <iframe
+                style={{
+                  position: "absolute",
+                  top: 0,
+                  left: 0,
+                  width: "100%",
+                  height: "100%",
+                }}
+                src={video}
+              />
+            </Frame>
+          </tr>
+          <tr>
+            <RowTitle>Contact Given Name</RowTitle>
+            <td>
+              <TableText>{firstName}</TableText>
+            </td>
+          </tr>
+          <tr>
+            <RowTitle>Contact Surname</RowTitle>
+            <td>
+              <TableText>{lastName}</TableText>
+            </td>
+          </tr>
+          <tr>
+            <RowTitle>Email Address</RowTitle>
+            <td>
+              <a href={"mailto:" + email} style={{ color: "black" }}>
+                <TableText>{email}</TableText>
+              </a>
             </td>
           </tr>
         </InfoTable>
